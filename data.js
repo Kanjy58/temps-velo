@@ -49,44 +49,42 @@ var points = {
   },
 };
 
-// Attention: pour que le temps s'affiche dans le bon sens, il faut mettre le
-// point le plus à l'est dans `to' et celui le plus à l'ouest dans `from'
 var lines = [
   {
-    from: points.mairie,
-    to: points.republique,
+    west: points.mairie,
+    east: points.republique,
     time: 3
   }, {
-    from: points.republique,
-    to: points.liberte,
+    west: points.republique,
+    east: points.liberte,
     time: 6
   }, {
-    from: points.lapoterie,
-    to: points.vernsurseiche,
+    west: points.lapoterie,
+    east: points.vernsurseiche,
     time: 17
   }, {
-    from: points.vernsurseiche,
-    to: points.starmel,
+    west: points.vernsurseiche,
+    east: points.starmel,
     time: 10
   }, {
-    from: points.starmel,
-    to: points.nouvoitou,
+    west: points.starmel,
+    east: points.nouvoitou,
     time: 15
   }, {
-    from: points.vernsurseiche,
-    to: points.nouvoitou,
+    west: points.vernsurseiche,
+    east: points.nouvoitou,
     time: 15
   }, {
-    from: points.beaulieu,
-    to: points.lapoteriesncf,
+    west: points.beaulieu,
+    east: points.lapoteriesncf,
     time: 15
   }, {
-    from: points.republique,
-    to: points.beaulieu,
+    west: points.republique,
+    east: points.beaulieu,
     time: 14
   }, {
-    from: points.lapoterie,
-    to: points.lapoteriesncf,
+    west: points.lapoterie,
+    east: points.lapoteriesncf,
     time: 8
   },
 ];

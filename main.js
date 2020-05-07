@@ -37,7 +37,7 @@ for(let i in lines) {
   var color = '#95303e';
   if(lines[i].time < 20) color = '#d38545';
   if(lines[i].time < 10) color = '#3791ac';
-  L.polyline([lines[i].from.latlng, lines[i].to.latlng], {
+  L.polyline([lines[i].west.latlng, lines[i].east.latlng], {
     color: color
   }).setText(lines[i].time + " min", {
     center: true,
