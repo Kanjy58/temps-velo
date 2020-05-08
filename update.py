@@ -12,9 +12,6 @@ from pathlib import Path
 import openrouteservice
 import json
 
-# openrouteservice API key
-OPENROUTESERVICEKEY = 'put your key here'
-
 # Nomitatim rate limit (requests per minutes)
 # https://operations.osmfoundation.org/policies/nominatim/
 nominatim_rate_limit = 60
@@ -24,6 +21,8 @@ nominatim_rate_limit = 60
 # https://openrouteservice.org/restrictions/
 openrouteservice_rate_limit  = 40
 
+# openrouteservice API key
+OPENROUTESERVICEKEY = open('openrouteservice.key', 'r').readlines()[0].rstrip()
 
 
 nominatim_mutex = Lock()
