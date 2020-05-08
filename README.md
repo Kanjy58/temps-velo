@@ -10,9 +10,9 @@ Change / Update
 ---------------
 
 1. Get an API key from [https://openrouteservice.org/dev/](https://openrouteservice.org/dev/)
-2. Set API key in file `update.py` (use [Nix](https://nixos.org/), or edit shebang and manually install dependencies)
+2. Set API key in file `update.py`
 3. Edit `points.tsv` (see format below)
-5. Run `update.py` and wait, this generates `data.js`
+5. Run `update.py` and wait, this generates `data.js` (use [Nix](https://nixos.org/), or edit shebang and manually install dependencies)
 6. Commit and push to a gitlab server with CI and pages enabled OR manually run instructions in `.gitlab-ci.yml` and put the `public/` directory on a web server.
 
 Note: as rates are low for Nominatim and Openrouteservice, requests results are cached in the file `cache.p`. After the first long run, incremental updates should be faster.
