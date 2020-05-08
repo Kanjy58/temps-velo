@@ -21,7 +21,7 @@ var pointsGroup = L.layerGroup();
 
 for(let i in points) {
   L.marker(
-    points[i].latlng, {
+    [points[i].lat, points[i].lng], {
       color: 'black',
       fillColor: 'white',
       fillOpacity: 1,
@@ -38,11 +38,11 @@ var linesGroup = L.layerGroup();
 
 for(let i in lines) {
   var color = '#95303e';
-  if(lines[i].time < 20) color = '#d38545';
-  if(lines[i].time < 10) color = '#3791ac';
-  L.polyline([lines[i].west.latlng, lines[i].east.latlng], {
+  if(lines[i].minutes < 20) color = '#d38545';
+  if(lines[i].minutes < 10) color = '#3791ac';
+  L.polyline([lines[i].west, lines[i].east], {
     color: color
-  }).setText(lines[i].time + " min", {
+  }).setText(lines[i].minutes + " min", {
     center: true,
     attributes: {class: "ll-line-label"}
   }).addTo(linesGroup);
