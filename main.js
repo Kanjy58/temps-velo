@@ -9,7 +9,8 @@ var map = L.map('mapid', {
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' +
-  ' | <a href="static/LICENSES.txt">Licenses</a>'
+  ' | By <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
+  ' | <a href="https://gitlab.com/taflevelo/temps-velo/">source code</a>'
 }).addTo(map);
 
 L.control.scale({
