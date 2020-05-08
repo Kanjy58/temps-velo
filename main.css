@@ -12,7 +12,7 @@ html, body, #mapid {
   border-radius: 10px;
 }
 .ll-point-label {
-  font-size: 150%;
+  font-size: 125%;
   text-align: center;
   text-shadow: 1px 1px 0 white, -1px 1px 0 white, 1px -1px 0 white,
     -1px -1px 0 white, 0px 1px 0 white, 0px -1px 0 white, -1px 0px 0 white,
@@ -27,7 +27,7 @@ html, body, #mapid {
   left: -95px;
 }
 .ll-line-label {
-  font-size: 100%;
+  font-size: 125%;
   text-align: center;
   text-shadow: 1px 1px 0 white, -1px 1px 0 white, 1px -1px 0 white,
     -1px -1px 0 white, 0px 1px 0 white, 0px -1px 0 white, -1px 0px 0 white,
