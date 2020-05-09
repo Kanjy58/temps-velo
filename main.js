@@ -6,13 +6,6 @@ var map = L.map('mapid', {
   zoom: init.zoom
 });
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' +
-  ' | By <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
-  ' | <a href="https://gitlab.com/taflevelo/temps-velo/">source code</a>'
-}).addTo(map);
-
 L.control.scale({
   imperial: false
 }).addTo(map);
@@ -62,7 +55,18 @@ var updateLayers = function(layers) {
 
 L.Permalink.setup(map, init.layers, updateLayers);
 
-L.control.layers({}, {
+var attr =
+  ' | By <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
+  ' | <a href="https://gitlab.com/taflevelo/temps-velo/">source code</a>';
+L.control.layers({
+  'OSM': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' + attr
+  }).addTo(map),
+  'vide': L.tileLayer('', {
+    attribution: attr
+  })
+}, {
   'points': pointsGroup,
   'temps': linesGroup,
 }).addTo(map);
