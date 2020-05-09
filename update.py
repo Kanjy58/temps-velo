@@ -24,6 +24,9 @@ openrouteservice_rate_limit  = 40
 # openrouteservice API key
 OPENROUTESERVICEKEY = open('openrouteservice.key', 'r').readlines()[0].rstrip()
 
+# filter out lines exceeding this time (should filter long exterior edges of triangulation)
+maxminutes = 60
+
 
 nominatim_mutex = Lock()
 
@@ -84,7 +87,8 @@ for p1, p2 in edges:
     # caching by coords
     if coords in cache['openrouteservice']:
         print('[cached] openrouteservice request for {} -> {}'.format(points.iloc[p1]['name'], points.iloc[p2]['name']), file=sys.stderr)
-        lines.append(cache['openrouteservice'][coords])
+        if(cache['openrouteservice'][coords]['minutes'] <= maxminutes):
+            lines.append(cache['openrouteservice'][coords])
     else:
         print('openrouteservice request for {} -> {}'.format(points.iloc[p1]['name'], points.iloc[p2]['name']), file=sys.stderr)
         routes = client.directions(coords, profile='cycling-regular')
@@ -108,7 +112,8 @@ for p1, p2 in edges:
         cache['openrouteservice'][coords] = res;
         write_cache(cache)
 
-        lines.append(res)
+        if(minutes <= maxminutes):
+            lines.append(res)
 
         sleep(60 / openrouteservice_rate_limit)
 
