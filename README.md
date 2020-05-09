@@ -26,7 +26,7 @@ points.tsv format
 
 Tab separator is chosen because comma are common in Nominatim queries.
 
-- `level`: not used for now. In the future, we may want a hierarchy in order to not display too much information at the same time (cities, subway stations, etc)
+- `level`: from which zoom level the point should be added to the mesh (and displayed with its connected lines)
 - `query`: string used to query Nominatim and get coordinates. It should be precise enough to get an unique result. In fact, we just use the first result. Test the query string on [Nominatim](https://nominatim.openstreetmap.org/)
 - `name`: displayed name on the map.
 

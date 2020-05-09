@@ -28,10 +28,14 @@ OPENROUTESERVICEKEY = open('openrouteservice.key', 'r').readlines()[0].rstrip()
 maxminutes = 60
 
 
+# increment when updating to incompatible cache
+cacheversion = "2"
+
+
 nominatim_mutex = Lock()
 
 def write_cache(cache):
-    pickle.dump(cache, open('cache.p', 'wb'))
+    pickle.dump(cache, open('cache' + cacheversion + '.p', 'wb'))
 
 def getLatLng(s):
     # caching by query
@@ -47,14 +51,16 @@ def getLatLng(s):
         sleep(60 / nominatim_rate_limit)
         nominatim_mutex.release()
 
-        cache['nominatim'][s['query']] = json[0]['lat'], json[0]['lon']
+        coords = float(json[0]['lat']), float(json[0]['lon'])
+
+        cache['nominatim'][s['query']] = coords
         write_cache(cache)
 
-        return json[0]['lat'], json[0]['lon']
+        return coords
 
 # Read cache
-if Path('cache.p').is_file():
-    cache = pickle.load(open('cache.p', 'rb'))
+if Path('cache' + cacheversion + '.p').is_file():
+    cache = pickle.load(open('cache' + cacheversion + '.p', 'rb'))
 else:
     cache = {
         'nominatim': {},
@@ -67,61 +73,71 @@ points = pd.read_csv('points.tsv', delimiter='\t')
 # do requests to Nominatim to get points' coordinates
 points[['lat', 'lng']] = points.apply(getLatLng, axis=1, result_type='expand')
 
-# compute Delaunay triangulation
-triangles = Delaunay(points[['lat', 'lng']]).simplices
-
-# get all unique edges
-edges = set()
-for triangle in triangles:
-    edges.add(tuple(sorted([triangle[0], triangle[1]])))
-    edges.add(tuple(sorted([triangle[1], triangle[2]])))
-    edges.add(tuple(sorted([triangle[0], triangle[2]])))
-
-# get trip time for each edge
-lines = []
 client = openrouteservice.Client(key=OPENROUTESERVICEKEY)
-for p1, p2 in edges:
-    coords = ((points.iloc[p1].lng, points.iloc[p1].lat),
-            (points.iloc[p2].lng, points.iloc[p2].lat))
+lines = []
 
-    # caching by coords
-    if coords in cache['openrouteservice']:
-        print('[cached] openrouteservice request for {} -> {}'.format(points.iloc[p1]['name'], points.iloc[p2]['name']), file=sys.stderr)
-        if(cache['openrouteservice'][coords]['minutes'] <= maxminutes):
-            lines.append(cache['openrouteservice'][coords])
-    else:
-        print('openrouteservice request for {} -> {}'.format(points.iloc[p1]['name'], points.iloc[p2]['name']), file=sys.stderr)
-        routes = client.directions(coords, profile='cycling-regular')
+# compute Delaunay triangulation + request time for each requested level
+levels = pd.unique(points['level']).tolist()
+levels.sort()
+for level in levels:
+    print('level <= {}'.format(level), file=sys.stderr)
+    # compute Delaunay triangulation
+    pointsLevel = points[points['level'] <= level];
+    triangles = Delaunay(pointsLevel[['lat', 'lng']]).simplices
 
-        minutes = round(routes['routes'][0]['summary']['duration'] / 60)
+    # get all unique edges
+    edges = set()
+    for triangle in triangles:
+        edges.add(tuple(sorted([triangle[0], triangle[1]])))
+        edges.add(tuple(sorted([triangle[1], triangle[2]])))
+        edges.add(tuple(sorted([triangle[0], triangle[2]])))
+
+    # get trip time for each edge
+    for p1, p2 in edges:
+        coords = ((pointsLevel.iloc[p1].lng, pointsLevel.iloc[p1].lat),
+                (pointsLevel.iloc[p2].lng, pointsLevel.iloc[p2].lat))
+
+        # caching by coords
+        if coords in cache['openrouteservice']:
+            print('[cached] openrouteservice request for {} -> {}'.format(pointsLevel.iloc[p1]['name'], pointsLevel.iloc[p2]['name']), file=sys.stderr)
+            minutes = cache['openrouteservice'][coords]
+        else:
+            print('openrouteservice request for {} -> {}'.format(pointsLevel.iloc[p1]['name'], pointsLevel.iloc[p2]['name']), file=sys.stderr)
+            routes = client.directions(coords, profile='cycling-regular')
+            sleep(60 / openrouteservice_rate_limit)
+
+            minutes = round(routes['routes'][0]['summary']['duration'] / 60)
+
+            cache['openrouteservice'][coords] = minutes;
+            write_cache(cache)
 
         # East/west is important to not get text reversed
-        if points.iloc[p1].lng < points.iloc[p2].lng:
-            west = [points.iloc[p2].lat, points.iloc[p2].lng]
-            east = [points.iloc[p1].lat, points.iloc[p1].lng]
+        p1lat = float(pointsLevel.iloc[p1].lat)
+        p1lng = float(pointsLevel.iloc[p1].lng)
+        p2lat = float(pointsLevel.iloc[p2].lat)
+        p2lng = float(pointsLevel.iloc[p2].lng)
+        if p1lng > p2lng:
+            west = [p2lat, p2lng]
+            east = [p1lat, p1lng]
         else:
-            west = [points.iloc[p1].lat, points.iloc[p1].lng]
-            east = [points.iloc[p2].lat, points.iloc[p2].lng]
-
-        res = {
-            'west': west,
-            'east': east,
-            'minutes': minutes
-        }
-
-        cache['openrouteservice'][coords] = res;
-        write_cache(cache)
+            west = [p1lat, p1lng]
+            east = [p2lat, p2lng]
 
         if(minutes <= maxminutes):
-            lines.append(res)
-
-        sleep(60 / openrouteservice_rate_limit)
+            lines.append({
+                'west': west,
+                'east': east,
+                'minutes': minutes,
+                'level': level,
+            })
 
 # write results
 with open('data.js', 'w') as output:
     output.write('// Autogenerated file, do not edit\n')
-    output.write('var points = ')
-    output.write(points[['name', 'lat', 'lng']].to_json(orient='records'))
+    output.write('var levels = ')
+    output.write(json.dumps(levels))
+    output.write(';\nvar points = ')
+    output.write(points[['name', 'lat', 'lng', 'level']].to_json(orient='records'))
     output.write(';\nvar lines = ')
     output.write(json.dumps(lines))
     output.write(';')

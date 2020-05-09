@@ -10,10 +10,12 @@ L.control.scale({
   imperial: false
 }).addTo(map);
 
+var zoomData = [];
+
 var pointsGroup = L.layerGroup();
 
 for(let i in points) {
-  L.marker(
+  var p = L.marker(
     [points[i].lat, points[i].lng], {
       color: 'black',
       fillColor: 'white',
@@ -24,7 +26,13 @@ for(let i in points) {
         iconAnchor: [10, 10]
       })
     }
-  ).addTo(pointsGroup);
+  );
+
+  zoomData.push({
+    'layer': p,
+    'group': pointsGroup,
+    'show': function(z) { return z >= points[i].level; }
+  });
 }
 
 var linesGroup = L.layerGroup();
@@ -33,14 +41,38 @@ for(let i in lines) {
   var color = '#95303e';
   if(lines[i].minutes <= 20) color = '#d38545';
   if(lines[i].minutes <= 10) color = '#3791ac';
-  L.polyline([lines[i].west, lines[i].east], {
+  var l = L.polyline([lines[i].west, lines[i].east], {
     color: color
   }).setText(lines[i].minutes + " min", {
     center: true,
     attributes: {class: "ll-line-label"}
-  }).addTo(linesGroup);
+  });
+
+  zoomData.push({
+    'layer': l,
+    'group': linesGroup,
+    'show': function(z) {
+      var levelidx = levels.indexOf(lines[i].level);
+      if((levels.length - 1) == levelidx) // last
+        return z >= lines[i].level;
+      return (z >= lines[i].level) && (z < levels[levelidx + 1]);
+    }
+  });
 }
 
+function zoomUpdate(e) {
+  zoomData.forEach(function(z) {
+    if(z.show(map.getZoom())) {
+      if(!z.group.hasLayer(z.layer))
+        z.group.addLayer(z.layer);
+    }
+    else if(z.group.hasLayer(z.layer))
+      z.group.removeLayer(z.layer);
+  });
+}
+
+map.on('zoomend', zoomUpdate);
+zoomUpdate();
 
 var updateLayers = function(layers) {
   if(layers.has('temps'))
