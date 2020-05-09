@@ -38,8 +38,8 @@ var linesGroup = L.layerGroup();
 
 for(let i in lines) {
   var color = '#95303e';
-  if(lines[i].minutes < 20) color = '#d38545';
-  if(lines[i].minutes < 10) color = '#3791ac';
+  if(lines[i].minutes <= 20) color = '#d38545';
+  if(lines[i].minutes <= 10) color = '#3791ac';
   L.polyline([lines[i].west, lines[i].east], {
     color: color
   }).setText(lines[i].minutes + " min", {
