@@ -12,20 +12,24 @@ level	query	name
 11	La Chapelle-des-Fougeretz	La Chapelle-des-Fougeretz
 11	La Chapelle-Thouarault	La Chapelle-Thouarault
 11	Chartres-de-Bretagne	Chartres-de-Bretagne
+11	Châteaugiron	Châteaugiron
 11	Chavagne	Chavagne
 11	Chevaigné	Chevaigné
 11	Cintré	Cintré
 11	Clayes	Clayes
 11	Corps-Nuds	Corps-Nuds
+11	Domloup	Domloup
 11	Gévezé	Gévezé
 11	L'Hermitage	L'Hermitage
 11	Laillé	Laillé
 11	Langan	Langan
+11	Melesse	Melesse
 11	Miniac-sous-Bécherel	Miniac-sous-Bécherel
 11	Montgermont	Montgermont
 11	Mordelles	Mordelles
 11	Nouvoitou	Nouvoitou
 11	Noyal-Châtillon-sur-Seiche	Noyal-Châtillon-sur-Seiche
+11	Noyal-Sur-Vilaine	Noyal-Sur-Vilaine
 11	Orgères, Ille-et-Vilaine	Orgères
 11	Pacé, Ille-et-Vilaine	Pacé
 11	Parthenay-de-Bretagne	Parthenay-de-Bretagne
@@ -53,8 +57,9 @@ level	query	name
 13	Viasilva, Rennes	Via Silva
 13	Village des Collectivités d'Ille-et-Vilaine	Village des Collectivités
 13	Saint-Martin, Rennes	Saint-Martin
-13	République, Rennes	République
 13	Gare de Rennes	Gare
 13	La Madeleine, Rennes	La Madeleine
-14	Cimetière de l'Est, Rennes	Cimetière de l'Est
 13	Écopôle Sud-Est, Rennes	Écopôle Sud-Est
+13	Village Forme, Betton	Village Forme
+13	Beauregard, Rennes	Beauregard
+14	Cimetière de l'Est, Rennes	Cimetière de l'Est
