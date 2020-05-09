@@ -91,7 +91,7 @@ var attr =
   ' | By <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
   ' | <a href="https://gitlab.com/taflevelo/temps-velo/">source code</a>';
 L.control.layers({
-  'OSM': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  'OSM': L.tileLayer('https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' + attr
   }).addTo(map),
