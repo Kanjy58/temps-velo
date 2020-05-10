@@ -1,5 +1,9 @@
 'use strict';
 
+var attr =
+  ' | By <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
+  ' | <a href="https://gitlab.com/taflevelo/temps-velo/">source code</a>';
+
 var init = L.Permalink.getMapLocation(13, [48.11, -1.67], ['temps', 'points']);
 var map = L.map('mapid', {
   center: init.center,
@@ -88,9 +92,6 @@ var updateLayers = function(layers) {
 
 L.Permalink.setup(map, init.layers, updateLayers);
 
-var attr =
-  ' | By <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
-  ' | <a href="https://gitlab.com/taflevelo/temps-velo/">source code</a>';
 L.control.layers({
   'OSM': L.tileLayer('https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     maxZoom: 19,
