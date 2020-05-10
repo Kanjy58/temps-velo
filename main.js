@@ -3,7 +3,8 @@
 var init = L.Permalink.getMapLocation(13, [48.11, -1.67], ['temps', 'points']);
 var map = L.map('mapid', {
   center: init.center,
-  zoom: init.zoom
+  zoom: init.zoom,
+  minZoom: levels.reduce(function(a,b) { return Math.min(a, b); }),
 });
 
 L.control.scale({
