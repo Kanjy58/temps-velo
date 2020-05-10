@@ -18,7 +18,7 @@ Change / Update
 Note: as rates are low for Nominatim and Openrouteservice, requests results are cached in the file `cache.p`. After the first long run, incremental updates should be faster.
 
 For other regions:
-1. edit title in index.html
+1. edit title and Twitter metadata in index.html
 2. edit default coordinates and zoom (first lines of `main.js`)
 
 points.tsv format
