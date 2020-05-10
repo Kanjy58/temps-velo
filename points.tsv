@@ -1,5 +1,4 @@
 level	query	name
-11	Rennes	Rennes
 11	Acigné	Acigné
 11	Bécherel	Bécherel
 11	Betton	Betton
@@ -8,9 +7,6 @@ level	query	name
 11	Bruz	Bruz
 11	Cesson-Sévigné	Cesson-Sévigné
 11	Chantepie	Chantepie
-11	La Chapelle-Chaussée	La Chapelle-Chaussée
-11	La Chapelle-des-Fougeretz	La Chapelle-des-Fougeretz
-11	La Chapelle-Thouarault	La Chapelle-Thouarault
 11	Chartres-de-Bretagne	Chartres-de-Bretagne
 11	Châteaugiron	Châteaugiron
 11	Chavagne	Chavagne
@@ -20,9 +16,14 @@ level	query	name
 11	Corps-Nuds	Corps-Nuds
 11	Domloup	Domloup
 11	Gévezé	Gévezé
-11	L'Hermitage	L'Hermitage
+11	La Chapelle-Chaussée	La Chapelle-Chaussée
+11	La Chapelle-des-Fougeretz	La Chapelle-des-Fougeretz
+11	La Chapelle-Thouarault	La Chapelle-Thouarault
 11	Laillé	Laillé
 11	Langan	Langan
+11	Le Rheu	Le Rheu
+11	Le Verger	Le Verger
+11	L'Hermitage	L'Hermitage
 11	Melesse	Melesse
 11	Miniac-sous-Bécherel	Miniac-sous-Bécherel
 11	Montgermont	Montgermont
@@ -34,7 +35,7 @@ level	query	name
 11	Pacé, Ille-et-Vilaine	Pacé
 11	Parthenay-de-Bretagne	Parthenay-de-Bretagne
 11	Pont-Péan	Pont-Péan
-11	Le Rheu	Le Rheu
+11	Rennes	Rennes
 11	Romillé	Romillé
 11	Saint-Armel	Saint-Armel
 11	Saint-Erblon	Saint-Erblon
@@ -43,23 +44,22 @@ level	query	name
 11	Saint-Jacques-de-la-Lande	Saint-Jacques-de-la-Lande
 11	Saint-Sulpice-la-Forêt	Saint-Sulpice-la-Forêt
 11	Thorigné-Fouillard	Thorigné-Fouillard
-11	Le Verger	Le Verger
 11	Vern-sur-Seiche	Vern-sur-Seiche
 11	Vezin-le-Coquet	Vezin-le-Coquet
-13	Cleunay, Rennes	Cleunay
+13	Beauregard, Rennes	Beauregard
 13	Bréquigny, Rennes	Bréquigny
+13	Campus Beaulieu, Rennes	Campus Beaulieu
+13	Campus Villejean, Rennes	Campus Villejean
+13	Cleunay, Rennes	Cleunay
+13	Écopôle Sud-Est, Rennes	Écopôle Sud-Est
+13	Gare de Rennes	Gare
 13	Henri Fréville, Rennes	Henri Fréville
+13	La Madeleine, Rennes	La Madeleine
 13	La Poterie, Rennes	La Poterie
 13	Pont de Strasbourg, Rennes	Pont de Strasbourg
 13	Rond-Point des Gayeulles, Rennes	Gayeulles
-13	Campus Villejean, Rennes	Campus Villejean
-13	Campus Beaulieu, Rennes	Campus Beaulieu
+13	Saint-Martin, Rennes	Saint-Martin
 13	Viasilva, Rennes	Via Silva
 13	Village des Collectivités d'Ille-et-Vilaine	Village des Collectivités
-13	Saint-Martin, Rennes	Saint-Martin
-13	Gare de Rennes	Gare
-13	La Madeleine, Rennes	La Madeleine
-13	Écopôle Sud-Est, Rennes	Écopôle Sud-Est
 13	Village Forme, Betton	Village Forme
-13	Beauregard, Rennes	Beauregard
 14	Cimetière de l'Est, Rennes	Cimetière de l'Est
