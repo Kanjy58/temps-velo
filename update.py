@@ -102,8 +102,15 @@ for level in levels:
             print('[cached] openrouteservice request for {} -> {}'.format(pointsLevel.iloc[p1]['name'], pointsLevel.iloc[p2]['name']), file=sys.stderr)
             minutes = cache['openrouteservice'][coords]
         else:
-            print('openrouteservice request for {} -> {}'.format(pointsLevel.iloc[p1]['name'], pointsLevel.iloc[p2]['name']), file=sys.stderr)
-            routes = client.directions(coords, profile='cycling-regular')
+            while True:
+                try:
+                    print('openrouteservice request for {} -> {}'.format(pointsLevel.iloc[p1]['name'], pointsLevel.iloc[p2]['name']), file=sys.stderr)
+                    routes = client.directions(coords, profile='cycling-regular')
+                    break
+                except openrouteservice.exceptions.HTTPError: # 502 can happen
+                    print('oops, retrying in a few moments', file=sys.stderr)
+                    sleep(4) # just be nice with the servers
+
             sleep(60 / openrouteservice_rate_limit)
 
             minutes = round(routes['routes'][0]['summary']['duration'] / 60)

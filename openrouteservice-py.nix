@@ -2,11 +2,11 @@
 
 buildPythonPackage rec {
   pname = "openrouteservice";
-  version = "2.2.2";
+  version = "2.2.3";
 
   src = fetchPypi {
     inherit pname version;
-    sha256 = "1a7hr18vwgh9zl04njlhvrbkpxdq4vjd2pz3nbcfmhmq7mgvpin6";
+    sha256 = "0sfpwfbzw64p462qp3a1p402h33ilch6ma991s80d6ni37nfxyzz";
   };
 
   # doCheck = false;
