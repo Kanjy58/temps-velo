@@ -10,9 +10,8 @@ stages:
 
 data:
   stage: precompute
-  before_script:
-    - nix-env -if shell.nix -A buildInputs
   script:
+    - nix-env -if shell.nix -A buildInputs
     - ./update.py
   cache:
     paths:
@@ -34,8 +33,8 @@ site:
 
 linkchecker:
   stage: test
-  image: nixery.dev/shell/linkchecker
   script:
+    - nix-env -iA nixpkgs.linkchecker
     - linkchecker --verbose public/index.html
   dependencies:
     - site
