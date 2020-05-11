@@ -1,7 +1,5 @@
 default:
   image: nixos/nix:2.3.4
-  before_script:
-    - nix-env -if shell.nix -A buildInputs
 
 stages:
   - precompute
@@ -12,6 +10,8 @@ stages:
 
 data:
   stage: precompute
+  before_script:
+    - nix-env -if shell.nix -A buildInputs
   script:
     - ./update.py
   cache:
@@ -23,6 +23,7 @@ data:
 
 site:
   stage: build
+  image: nixery.dev/shell/minify/openssl/gawk
   script:
     - ./build-site.sh
   dependencies:
@@ -33,6 +34,7 @@ site:
 
 linkchecker:
   stage: test
+  image: nixery.dev/shell/linkchecker
   script:
     - linkchecker --verbose public/index.html
   dependencies:
