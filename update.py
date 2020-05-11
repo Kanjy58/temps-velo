@@ -1,7 +1,7 @@
-#! /usr/bin/env nix-shell
-#! nix-shell -i python3 -p "python3.withPackages(ps: with ps; [pandas scipy requests (python3Packages.callPackage ./openrouteservice-py.nix {})])"
+#! /usr/bin/env python3
 
 import sys
+import os
 import pandas as pd
 import requests
 from time import sleep
@@ -20,9 +20,6 @@ nominatim_rate_limit = 60
 # https://openrouteservice.org/plans/
 # https://openrouteservice.org/restrictions/
 openrouteservice_rate_limit  = 40
-
-# openrouteservice API key
-OPENROUTESERVICEKEY = open('openrouteservice.key', 'r').readlines()[0].rstrip()
 
 # filter out lines exceeding this time (should filter long exterior edges of triangulation)
 maxminutes = 60
@@ -73,7 +70,7 @@ points = pd.read_csv('points.tsv', delimiter='\t')
 # do requests to Nominatim to get points' coordinates
 points[['lat', 'lng']] = points.apply(getLatLng, axis=1, result_type='expand')
 
-client = openrouteservice.Client(key=OPENROUTESERVICEKEY)
+client = openrouteservice.Client(key=os.environ['OPENROUTESERVICEKEY'])
 lines = []
 
 # compute Delaunay triangulation + request time for each requested level
@@ -102,8 +99,15 @@ for level in levels:
             print('[cached] openrouteservice request for {} -> {}'.format(pointsLevel.iloc[p1]['name'], pointsLevel.iloc[p2]['name']), file=sys.stderr)
             minutes = cache['openrouteservice'][coords]
         else:
-            print('openrouteservice request for {} -> {}'.format(pointsLevel.iloc[p1]['name'], pointsLevel.iloc[p2]['name']), file=sys.stderr)
-            routes = client.directions(coords, profile='cycling-regular')
+            while True:
+                try:
+                    print('openrouteservice request for {} -> {}'.format(pointsLevel.iloc[p1]['name'], pointsLevel.iloc[p2]['name']), file=sys.stderr)
+                    routes = client.directions(coords, profile='cycling-regular')
+                    break
+                except openrouteservice.exceptions.HTTPError: # 502 can happen
+                    print('oops, retrying in a few moments', file=sys.stderr)
+                    sleep(4) # just be nice with the servers
+
             sleep(60 / openrouteservice_rate_limit)
 
             minutes = round(routes['routes'][0]['summary']['duration'] / 60)
