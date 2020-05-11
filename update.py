@@ -65,7 +65,7 @@ else:
     }
 
 # read wanted points
-points = pd.read_csv('points.tsv', delimiter='\t')
+points = pd.read_csv('points.csv', delimiter=';')
 
 # do requests to Nominatim to get points' coordinates
 points[['lat', 'lng']] = points.apply(getLatLng, axis=1, result_type='expand')

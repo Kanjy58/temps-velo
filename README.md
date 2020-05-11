@@ -9,7 +9,7 @@ Made by [@taflevelo](https://twitter.com/taflevelo).
 Change / Update
 ---------------
 
-1. Edit `points.tsv` (see format below)
+1. Edit `points.csv` (see format below)
 2. Get an API key from [https://openrouteservice.org/dev/](https://openrouteservice.org/dev/)
 3. When using Gitlab CI:
     1. Put the API key in an environment variable named `OPENROUTESERVICEKEY` in the [CI settings](https://docs.gitlab.com/ee/ci/variables/#create-a-custom-variable-in-the-ui).
@@ -31,10 +31,8 @@ The dependencies can be handled by:
 
 Note: as rates are low for Nominatim and Openrouteservice, requests results are cached in the file `cache*.p`. After the first long run, incremental updates should be faster.
 
-points.tsv format
+points.csv format
 -------------------
-
-Tab separator is chosen because comma are common in Nominatim queries.
 
 - `level`: from which zoom level the point should be added to the mesh (and displayed with its connected lines)
 - `query`: string used to query Nominatim and get coordinates. It should be precise enough to get an unique result. In fact, we just use the first result. Test the query string on [Nominatim](https://nominatim.openstreetmap.org/). You can use [Nominatim special phrases](https://wiki.openstreetmap.org/wiki/Nominatim/Special_Phrases/EN) to refine the search.
