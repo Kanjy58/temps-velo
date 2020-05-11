@@ -9,18 +9,27 @@ Made by [@taflevelo](https://twitter.com/taflevelo).
 Change / Update
 ---------------
 
-1. Get an API key from [https://openrouteservice.org/dev/](https://openrouteservice.org/dev/)
-2. Set API key in a file named `openrouteservice.key`
-3. Edit `points.tsv` (see format below)
-5. Run `update.py` and wait, this generates `data.js` (use [Nix](https://nixos.org/), or edit shebang and manually install dependencies)
-6. Commit and push to a gitlab server with CI and pages enabled OR manually run instructions in `.gitlab-ci.yml` and put the `public/` directory on a web server.
-
-Note: as rates are low for Nominatim and Openrouteservice, requests results are cached in the file `cache.p`. After the first long run, incremental updates should be faster.
+1. Edit `points.tsv` (see format below)
+2. Get an API key from [https://openrouteservice.org/dev/](https://openrouteservice.org/dev/)
+3. When using Gitlab CI:
+    1. Put the API key in an environment variable named `OPENROUTESERVICEKEY` in the [CI settings](https://docs.gitlab.com/ee/ci/variables/#create-a-custom-variable-in-the-ui).
+    2. Commit and push
+4. When using other tools, or manually:
+    1. Put the API key in an environment variable named `OPENROUTESERVICEKEY`
+    2. Run `./update.py` to precompute all points coordinates and trip durations
+    2. Run `./build-site.sh` to build the site
+    3. copy the `public/` directory on a web server
 
 For other regions:
 1. edit title and Twitter metadata in index.html
 2. edit default coordinates and zoom (first lines of `main.js`)
 3. optionally edit/append attribution (first lines of `main.js`)
+
+
+The dependencies can be handled by:
+- running the scripts inside a `nix-shell` (with [Nix](https://nixos.org/) installed)
+
+Note: as rates are low for Nominatim and Openrouteservice, requests results are cached in the file `cache*.p`. After the first long run, incremental updates should be faster.
 
 points.tsv format
 -------------------

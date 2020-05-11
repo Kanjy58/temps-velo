@@ -1,17 +1,49 @@
-image: nixery.dev/shell/minify/openssl/gawk
+default:
+  image: nixos/nix:2.3.4
+  before_script:
+    - nix-env -if shell.nix -A buildInputs
+
+stages:
+  - precompute
+  - build
+  - test
+  - deploy
+
+
+data:
+  stage: precompute
+  script:
+    - ./update.py
+  cache:
+    paths:
+      - cache*.p
+  artifacts:
+    paths:
+      - data.js
+
+site:
+  stage: build
+  script:
+    - ./build-site.sh
+  dependencies:
+    - data
+  artifacts:
+    paths:
+      - public
+
+linkchecker:
+  stage: test
+  script:
+    - linkchecker --verbose public/index.html
+  dependencies:
+    - site
 
 pages:
   stage: deploy
   script:
-    - mkdir .public
-    - cp -r static .public/
-    - minify main.css > .public/static/main.min.css
-    - minify main.js > .public/static/main.min.js
-    - minify data.js > .public/static/data.min.js
-    - pushd .public
-    - awk -F\" '/HASH/ { "openssl dgst -sha512 -binary < " $2 " | openssl enc -base64 -A" | getline hash; sub(/HASH/, hash) } { print }' < ../index.html > index.html
-    - popd
-    - mv .public public
+    - echo deploying
+  dependencies:
+    - site
   artifacts:
     paths:
       - public
