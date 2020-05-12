@@ -16,7 +16,7 @@ Change / Update
     2. Commit and push
 4. When using other tools, or manually:
     1. Put the API key in an environment variable named `OPENROUTESERVICEKEY`
-    2. Run `./update.py` to precompute all points coordinates and trip durations
+    2. Run `./build-data.py` to precompute all points coordinates and trip durations
     2. Run `./build-site.sh` to build the site
     3. copy the `public/` directory on a web server
 

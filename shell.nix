@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> { overlays = [ (import ./overlay.nix) ]; } }:
+{ pkgs ? import <nixpkgs> { overlays = [ (import ./openrouteservice/overlay.nix) ]; } }:
 
 pkgs.mkShell {
   buildInputs = with pkgs; [
