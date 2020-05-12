@@ -27,6 +27,7 @@ For other regions:
 
 
 The dependencies can be handled by:
+- using pip: `pip install -r requirements.txt`
 - running the scripts inside a `nix-shell` (with [Nix](https://nixos.org/) installed)
 
 Note: as rates are low for Nominatim and Openrouteservice, requests results are cached in the file `cache*.p`. After the first long run, incremental updates should be faster.

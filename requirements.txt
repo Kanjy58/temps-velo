@@ -1,0 +1,4 @@
+openrouteservice==2.3.0
+pandas==1.0.3
+requests==2.21.0
+scipy==1.4.1
