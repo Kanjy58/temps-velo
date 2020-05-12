@@ -35,10 +35,12 @@ def write_cache(cache):
     pickle.dump(cache, open('cache' + cacheversion + '.p', 'wb'))
 
 def getLatLng(s):
+    if not pd.isna(s['lat']) and not pd.isna(s['lng']):
+        print('use coordinates for {}'.format(s['name']), file=sys.stderr)
     # caching by query
-    if s['query'] in cache['nominatim']:
+    elif s['query'] in cache['nominatim']:
         print('[cached] nominatim request for {}'.format(s['name']), file=sys.stderr)
-        return cache['nominatim'][s['query']]
+        s['lat'], s['lng'] = cache['nominatim'][s['query']]
     else:
         nominatim_mutex.acquire()
 
@@ -53,7 +55,9 @@ def getLatLng(s):
         cache['nominatim'][s['query']] = coords
         write_cache(cache)
 
-        return coords
+        s['lat'], s['lng'] = coords
+
+    return s
 
 def getTime(departure, arrival):
         coords = ((departure.lng, departure.lat), (arrival.lng, arrival.lat))
@@ -93,8 +97,8 @@ else:
 # read wanted points
 points = pd.read_csv('points.csv', delimiter=';')
 
-# do requests to Nominatim to get points' coordinates
-points[['lat', 'lng']] = points.apply(getLatLng, axis=1, result_type='expand')
+# do requests to Nominatim to get points' coordinates where needed
+points = points.apply(getLatLng, axis=1, result_type='expand')
 
 client = openrouteservice.Client(key=os.environ['OPENROUTESERVICEKEY'])
 lines = []

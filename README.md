@@ -35,8 +35,11 @@ points.csv format
 -------------------
 
 - `level`: from which zoom level the point should be added to the mesh (and displayed with its connected lines)
+- `lat` and `lng`: coordinates of the point
 - `query`: string used to query Nominatim and get coordinates. It should be precise enough to get an unique result. In fact, we just use the first result. Test the query string on [Nominatim](https://nominatim.openstreetmap.org/). You can use [Nominatim special phrases](https://wiki.openstreetmap.org/wiki/Nominatim/Special_Phrases/EN) to refine the search.
 - `name`: displayed name on the map.
+
+For each row, use either coordinates or query string (̀coordinates takes precedence).
 
 Thanks
 ------

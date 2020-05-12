@@ -94,7 +94,7 @@ L.Permalink.setup(map, init.layers, updateLayers);
 
 L.control.layers({
   'OSM': L.tileLayer('https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-    maxZoom: 19,
+    maxZoom: 20,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' + attr
   }).addTo(map),
   'vide': L.tileLayer('', {

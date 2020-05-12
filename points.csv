@@ -1,78 +1,78 @@
-level;query;name
-11;Acigné;Acigné
-11;Bécherel;Bécherel
-11;Betton;Betton
-11;Bourgbarré;Bourgbarré
-11;Brécé;Brécé
-11;Bruz;Bruz
-11;Cesson-Sévigné;Cesson-Sévigné
-11;Chantepie;Chantepie
-11;Chartres-de-Bretagne;Chartres-de-Bretagne
-11;Châteaugiron;Châteaugiron
-11;Chavagne;Chavagne
-11;Chevaigné;Chevaigné
-11;Cintré;Cintré
-11;Clayes;Clayes
-11;Corps-Nuds;Corps-Nuds
-11;Domloup;Domloup
-11;Gare Ferroviaire à Montreuil-sur-Ille;Gare de Montreuil-sur-Ille
-11;Gare Ferroviaire à Saint-Germain-sur-Ille;Gare de Saint-Germain-sur-Ille
-11;Gévezé;Gévezé
-11;La Chapelle-Chaussée;La Chapelle-Chaussée
-11;La Chapelle-des-Fougeretz;La Chapelle-des-Fougeretz
-11;La Chapelle-Thouarault;La Chapelle-Thouarault
-11;Laillé;Laillé
-11;Langan;Langan
-11;Le Rheu;Le Rheu
-11;Le Verger;Le Verger
-11;L'Hermitage;L'Hermitage
-11;Melesse;Melesse
-11;Miniac-sous-Bécherel;Miniac-sous-Bécherel
-11;Montgermont;Montgermont
-11;Mordelles;Mordelles
-11;Nouvoitou;Nouvoitou
-11;Noyal-Châtillon-sur-Seiche;Noyal-Châtillon-sur-Seiche
-11;Noyal-Sur-Vilaine;Noyal-Sur-Vilaine
-11;Orgères, Ille-et-Vilaine;Orgères
-11;Pacé, Ille-et-Vilaine;Pacé
-11;Parthenay-de-Bretagne;Parthenay-de-Bretagne
-11;Pont-Péan;Pont-Péan
-11;Rennes;Rennes
-11;Romillé;Romillé
-11;Saint-Armel;Saint-Armel
-11;Saint-Erblon;Saint-Erblon
-11;Saint-Gilles, Ille-et-Vilaine;Saint-Gilles
-11;Saint-Grégoire;Saint-Grégoire
-11;Saint-Jacques-de-la-Lande;Saint-Jacques-de-la-Lande
-11;Saint-Médard-sur-Ille, Rue de la Gare, La Halte, Saint-Médard-sur-Ille;Gare de Saint-Médard-sur-Ille
-11;Saint-Sulpice-la-Forêt;Saint-Sulpice-la-Forêt
-11;Thorigné-Fouillard;Thorigné-Fouillard
-11;Vern-sur-Seiche;Vern-sur-Seiche
-11;Vezin-le-Coquet;Vezin-le-Coquet
-13;Arrêt de train Ker Lann, Bruz;Gare de Ker-Lann
-13;Beauregard, Rennes;Beauregard
-13;Bréquigny, Rennes;Bréquigny
-13;Campus Beaulieu, Rennes;Campus Beaulieu
-13;Campus Villejean, Rennes;Campus Villejean
-13;Cleunay, Rennes;Cleunay
-13;Corps-Nuds, Rue du Paty Boudier, Le Choisel, Corps-Nuds;Gare de Corps-Nuds
-13;Écopôle Sud-Est, Rennes;Écopôle Sud-Est
-13;Gare de Rennes;Gare
-13;Gare Ferroviaire à Laillé;Gare de Laillé
-13;Henri Fréville, Rennes;Henri Fréville
-13;La Madeleine, Rennes;La Madeleine
-13;La Poterie, Rennes;La Poterie
-13;Pont de Strasbourg, Rennes;Pont de Strasbourg
-13;Rond-Point des Gayeulles, Rennes;Gayeulles
-13;Saint-Martin, Rennes;Saint-Martin
-13;Viasilva, Rennes;Via Silva
-13;Village des Collectivités d'Ille-et-Vilaine;Village des Collectivités
-13;Village Forme, Betton;Village Forme
-14;Bruz, Rue Champion de Cicé, La Rabine, Bruz;Gare de Bruz
-14;Cimetière de l'Est, Rennes;Cimetière de l'Est
-14;Gare Ferroviaire à Betton;Gare de Betton
-14;Gare Ferroviaire à Chevaigné;Gare de Chevaigné
-14;Gare Ferroviaire à Rue de Paris, Cesson-Sévigné;Gare de Cesson-Sévigné
-14;Halte de Pontchaillou, Rennes;Gare Pontchaillou
-14;Rennes-La Poterie, Rue de Châteaugiron, Rennes;Gare de La Poterie
-14;Saint-Jacques-de-la-Lande, D 177, La Chevrolais, La Basse Calvenais, Saint-Jacques-de-la-Lande;Gare de Saint-Jacques-de-la-Lande
+level;lat;lng;query;name
+11;;;Acigné;Acigné
+11;;;Bécherel;Bécherel
+11;;;Betton;Betton
+11;;;Bourgbarré;Bourgbarré
+11;;;Brécé;Brécé
+11;;;Bruz;Bruz
+11;;;Cesson-Sévigné;Cesson-Sévigné
+11;;;Chantepie;Chantepie
+11;;;Chartres-de-Bretagne;Chartres-de-Bretagne
+11;;;Châteaugiron;Châteaugiron
+11;;;Chavagne;Chavagne
+11;;;Chevaigné;Chevaigné
+11;;;Cintré;Cintré
+11;;;Clayes;Clayes
+11;;;Corps-Nuds;Corps-Nuds
+11;;;Domloup;Domloup
+11;;;Gare Ferroviaire à Montreuil-sur-Ille;Gare de Montreuil-sur-Ille
+11;;;Gare Ferroviaire à Saint-Germain-sur-Ille;Gare de Saint-Germain-sur-Ille
+11;;;Gévezé;Gévezé
+11;;;La Chapelle-Chaussée;La Chapelle-Chaussée
+11;;;La Chapelle-des-Fougeretz;La Chapelle-des-Fougeretz
+11;;;La Chapelle-Thouarault;La Chapelle-Thouarault
+11;;;Laillé;Laillé
+11;;;Langan;Langan
+11;;;Le Rheu;Le Rheu
+11;;;Le Verger;Le Verger
+11;;;L'Hermitage;L'Hermitage
+11;;;Melesse;Melesse
+11;;;Miniac-sous-Bécherel;Miniac-sous-Bécherel
+11;;;Montgermont;Montgermont
+11;;;Mordelles;Mordelles
+11;;;Nouvoitou;Nouvoitou
+11;;;Noyal-Châtillon-sur-Seiche;Noyal-Châtillon-sur-Seiche
+11;;;Noyal-Sur-Vilaine;Noyal-Sur-Vilaine
+11;;;Orgères, Ille-et-Vilaine;Orgères
+11;;;Pacé, Ille-et-Vilaine;Pacé
+11;;;Parthenay-de-Bretagne;Parthenay-de-Bretagne
+11;;;Pont-Péan;Pont-Péan
+11;;;Rennes;Rennes
+11;;;Romillé;Romillé
+11;;;Saint-Armel;Saint-Armel
+11;;;Saint-Erblon;Saint-Erblon
+11;;;Saint-Gilles, Ille-et-Vilaine;Saint-Gilles
+11;;;Saint-Grégoire;Saint-Grégoire
+11;;;Saint-Jacques-de-la-Lande;Saint-Jacques-de-la-Lande
+11;48.2742354;-1.6676406;;Gare de Saint-Médard-sur-Ille
+11;;;Saint-Sulpice-la-Forêt;Saint-Sulpice-la-Forêt
+11;;;Thorigné-Fouillard;Thorigné-Fouillard
+11;;;Vern-sur-Seiche;Vern-sur-Seiche
+11;;;Vezin-le-Coquet;Vezin-le-Coquet
+13;;;Arrêt de train Ker Lann, Bruz;Gare de Ker-Lann
+13;;;Beauregard, Rennes;Beauregard
+13;;;Bréquigny, Rennes;Bréquigny
+13;;;Campus Beaulieu, Rennes;Campus Beaulieu
+13;;;Campus Villejean, Rennes;Campus Villejean
+13;;;Cleunay, Rennes;Cleunay
+13;47.9851669;-1.5754724;;Gare de Corps-Nuds
+13;;;Écopôle Sud-Est, Rennes;Écopôle Sud-Est
+13;;;Gare de Rennes;Gare
+13;;;Gare Ferroviaire à Laillé;Gare de Laillé
+13;;;Henri Fréville, Rennes;Henri Fréville
+13;;;La Madeleine, Rennes;La Madeleine
+13;;;La Poterie, Rennes;La Poterie
+13;;;Pont de Strasbourg, Rennes;Pont de Strasbourg
+13;;;Rond-Point des Gayeulles, Rennes;Gayeulles
+13;;;Saint-Martin, Rennes;Saint-Martin
+13;;;Viasilva, Rennes;Via Silva
+13;;;Village des Collectivités d'Ille-et-Vilaine;Village des Collectivités
+13;;;Village Forme, Betton;Village Forme
+14;;;Bruz, Rue Champion de Cicé, La Rabine, Bruz;Gare de Bruz
+14;;;Cimetière de l'Est, Rennes;Cimetière de l'Est
+14;;;Gare Ferroviaire à Betton;Gare de Betton
+14;;;Gare Ferroviaire à Chevaigné;Gare de Chevaigné
+14;;;Gare Ferroviaire à Rue de Paris, Cesson-Sévigné;Gare de Cesson-Sévigné
+14;;;Halte de Pontchaillou, Rennes;Gare Pontchaillou
+14;;;Rennes-La Poterie, Rue de Châteaugiron, Rennes;Gare de La Poterie
+14;48.0675065;-1.7138014;;Gare de Saint-Jacques-de-la-Lande
