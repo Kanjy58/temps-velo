@@ -12,7 +12,7 @@ data:
   stage: precompute
   script:
     - nix-env -if shell.nix -A buildInputs
-    - ./update.py
+    - ./build-data.py
   cache:
     paths:
       - cache*.p
