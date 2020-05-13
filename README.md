@@ -12,7 +12,12 @@ Change / Update
 1. Edit `points.csv` (see format below)
 2. Get an API key from [https://openrouteservice.org/dev/](https://openrouteservice.org/dev/)
 3. When using Gitlab CI:
-    1. Put the API key in an environment variable named `OPENROUTESERVICEKEY` in the [CI settings](https://docs.gitlab.com/ee/ci/variables/#create-a-custom-variable-in-the-ui).
+    1. Set the API key in an environment variable named `OPENROUTESERVICEKEY` in the [CI settings](https://docs.gitlab.com/ee/ci/variables/#create-a-custom-variable-in-the-ui):
+        1. In Gitlab UI, go to `Settings` → `CI / CD`, then expand `Variables`
+        2. Click `Add Variable` button
+        3. Set `Key` to `OPENROUTESERVICEKEY`, set `Value` to your key, keep `Type` set to `Variable`
+        4. CHECK THE CHECKBOXES `Protect variable` and `Mask variable`. This will prevent people from STEALING your key
+        5. If you did not set your key this way, delete your key from [Openrouteservice](https://openrouteservice.org/dev/), ask for a new one and start over
     2. Commit and push
 4. When using other tools, or manually:
     1. Put the API key in an environment variable named `OPENROUTESERVICEKEY`
