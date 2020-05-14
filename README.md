@@ -6,6 +6,25 @@ It does not give routes, but give an overview of how many time is needed to bike
 
 Made by [@taflevelo](https://twitter.com/taflevelo).
 
+How does it work?
+-----------------
+
+The map generation is based on a simple list of places.
+Each place has several attributes:
+- A name
+- A location (either an address or coordinates)
+- A zoom level
+
+Starting from this list, everything else is computed automatically:
+
+1. For each place, if the coordinates are not provided, the location is converted to coordinates thanks to a geocoding service
+2. For each zoom level:
+    1. All places with a zoom level attribute **equal or less precise** (smaller) are selected
+    2. A [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) is computed from the selected places' coordinates. The triangulation automatically selects which paths will be displayed at the end. In this step, only the distance as the crow flies matters
+    3. For each (unique) edge of all triangles, a route is computed by an online routing service, with a bicycle profile. Only the duration is extracted from the route
+    4. Routes with duration above a threshold are discarded. This is a simple solution to remove edges from the border of the map, which may be ugly
+3. The website is generated from all this data
+
 Change / Update
 ---------------
 
