@@ -6,6 +6,25 @@ It does not give routes, but give an overview of how many time is needed to bike
 
 Made by [@taflevelo](https://twitter.com/taflevelo).
 
+How does it work?
+-----------------
+
+The map generation is based on a simple list of places.
+Each place has several attributes:
+- A name
+- A location (either an address or coordinates)
+- A zoom level
+
+Starting from this list, everything else is computed automatically:
+
+1. For each place, if the coordinates are not provided, the location is converted to coordinates thanks to a geocoding service
+2. For each zoom level:
+    1. All places with a zoom level attribute **equal or less precise** (smaller) are selected
+    2. A [Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation) is computed from the selected places' coordinates. The triangulation automatically selects which paths will be displayed at the end. In this step, only the distance as the crow flies matters
+    3. For each (unique) edge of all triangles, a route is computed by an online routing service, with a bicycle profile. Only the duration is extracted from the route
+    4. Routes with duration above a threshold are discarded. This is a simple solution to remove edges from the border of the map, which may be ugly
+3. The website is generated from all this data
+
 Change / Update
 ---------------
 
@@ -42,10 +61,23 @@ points.csv format
 
 - `level`: from which zoom level the point should be added to the mesh (and displayed with its connected lines)
 - `lat` and `lng`: coordinates of the point
-- `query`: string used to query Nominatim and get coordinates. It should be precise enough to get an unique result. In fact, we just use the first result. Test the query string on [Nominatim](https://nominatim.openstreetmap.org/). You can use [Nominatim special phrases](https://wiki.openstreetmap.org/wiki/Nominatim/Special_Phrases/EN) to refine the search.
+- `query`: string used to query geocoding service and get coordinates
 - `name`: displayed name on the map.
 
 For each row, use either coordinates or query string (̀coordinates takes precedence).
+
+Tips for people making map with this tool
+-----------------------------------------
+
+- the zoom level is the number in the URL after the `#` character and just before the `z` character
+- play around to see how zoom management works and how the map renders. The zoom mechanism is designed to increase precision (with more points and more edges) as the user zooms
+- avoid showing too much information at a given zoom level: if names and travel times are illegible, the map becomes useless
+- avoid showing too much information at all. Having a lot of edges with 3 or 4 minutes is not very useful and makes the map less readable. The map should be a general scheme showing how much time is needed to ride from point A to point B
+- the map should be readable for all zoom levels. Test all of them
+- avoid selecting places that are too close to each other: this is useless and makes the triangulation ugly
+- the query string should be precise enough to get an unique result. In fact, only the first result is used
+- test the query string on [Nominatim](https://nominatim.openstreetmap.org/). You can use [Nominatim special phrases](https://wiki.openstreetmap.org/wiki/Nominatim/Special_Phrases/EN) to refine the search
+- query strings are fine for places like cities. Otherwise, directly giving coordinates can be more convenient
 
 Thanks
 ------
