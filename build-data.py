@@ -60,30 +60,30 @@ def getLatLng(s):
     return s
 
 def getTime(departure, arrival):
-        coords = ((departure.lng, departure.lat), (arrival.lng, arrival.lat))
+    coords = ((departure.lng, departure.lat), (arrival.lng, arrival.lat))
 
-        # caching by coords
-        if coords in cache['openrouteservice']:
-            print('[cached] openrouteservice request for {} -> {}'.format(departure['name'], arrival['name']), file=sys.stderr)
-            return cache['openrouteservice'][coords]
-        else:
-            while True:
-                try:
-                    print('openrouteservice request for {} -> {}'.format(departure['name'], arrival['name']), file=sys.stderr)
-                    routes = client.directions(coords, profile='cycling-regular')
-                    break
-                except openrouteservice.exceptions.HTTPError: # 502 can happen
-                    print('oops, retrying in a few moments', file=sys.stderr)
-                    sleep(4) # just be nice with the servers
+    # caching by coords
+    if coords in cache['openrouteservice']:
+        print('[cached] openrouteservice request for {} -> {}'.format(departure['name'], arrival['name']), file=sys.stderr)
+        return cache['openrouteservice'][coords]
+    else:
+        while True:
+            try:
+                print('openrouteservice request for {} -> {}'.format(departure['name'], arrival['name']), file=sys.stderr)
+                routes = client.directions(coords, profile='cycling-regular')
+                break
+            except openrouteservice.exceptions.HTTPError: # 502 can happen
+                print('oops, retrying in a few moments', file=sys.stderr)
+                sleep(4) # just be nice with the servers
 
-            sleep(60 / openrouteservice_rate_limit)
+        sleep(60 / openrouteservice_rate_limit)
 
-            minutes = round(routes['routes'][0]['summary']['duration'] / 60)
+        minutes = round(routes['routes'][0]['summary']['duration'] / 60)
 
-            cache['openrouteservice'][coords] = minutes;
-            write_cache(cache)
+        cache['openrouteservice'][coords] = minutes;
+        write_cache(cache)
 
-            return minutes
+        return minutes
 
 # Read cache
 if Path('cache' + cacheversion + '.p').is_file():
