@@ -24,11 +24,15 @@ for(let i in points) {
       fillOpacity: 1,
       radius: 5,
       icon: L.divIcon({
-        html: '<p class="ll-point-label">' + points[i].name + '</p>',
         iconAnchor: [10, 10]
       })
     }
   );
+
+  p.bindPopup(points[i].name, {
+    closeOnClick: false, // Remove these 2 lines to keep
+    autoClose: false     // only 1 open popup at a time
+  });
 
   // Initially add all of them to get default zoom and center
   pointsGroup.addLayer(p);
