@@ -46,8 +46,7 @@ Change / Update
 
 For other regions:
 1. edit title and Twitter metadata in index.html
-2. edit default coordinates and zoom (first lines of `main.js`)
-3. optionally edit/append attribution (first lines of `main.js`)
+2. optionally edit/append attribution (first lines of `main.js`)
 
 
 The dependencies can be handled by:
