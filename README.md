@@ -45,9 +45,8 @@ Change / Update
     3. copy the `public/` directory on a web server
 
 For other regions:
-1. edit title and Twitter metadata in index.html
-2. edit default coordinates and zoom (first lines of `main.js`)
-3. optionally edit/append attribution (first lines of `main.js`)
+1. edit title, modal text and Twitter metadata in index.html
+2. optionally edit/append attribution (first lines of `main.js`)
 
 
 The dependencies can be handled by:
@@ -71,6 +70,7 @@ Tips for people making map with this tool
 
 - the zoom level is the number in the URL after the `#` character and just before the `z` character
 - play around to see how zoom management works and how the map renders. The zoom mechanism is designed to increase precision (with more points and more edges) as the user zooms
+- do not duplicate a line with the same data but different zoom levels. A point set with a given zoom level attribute will appear at this zoom level and stay for all more precise zoom levels
 - avoid showing too much information at a given zoom level: if names and travel times are illegible, the map becomes useless
 - avoid showing too much information at all. Having a lot of edges with 3 or 4 minutes is not very useful and makes the map less readable. The map should be a general scheme showing how much time is needed to ride from point A to point B
 - the map should be readable for all zoom levels. Test all of them
@@ -90,6 +90,7 @@ Many thanks to:
 - [Leaflet](https://leafletjs.com/): Display the map in your browser
 - [leaflet.Permalink](https://github.com/MarcChasse/leaflet.Permalink): Make URL shareable (slightly updated to get/put the current overlays in url)
 - [leaflet.TextPath](https://github.com/makinacorpus/Leaflet.TextPath): Display time on the edges
+- [Micromodal](https://github.com/Ghosh/micromodal): Display explanation modal
 - All dependencies of these projects, and all dependencies of these projects, and (Error: infinite recursion)
 - Others, see source code
 - Authors of all free software that I used (Error: list too long)

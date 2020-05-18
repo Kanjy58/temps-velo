@@ -1,13 +1,10 @@
 'use strict';
 
 var attr =
-  ' | By <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
-  ' | <a href="https://gitlab.com/taflevelo/temps-velo/">source code</a>';
+  ' | Par <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
+  ' | <a href="javascript:void(0)" id="explanation-link">Explications</a>';
 
-var init = L.Permalink.getMapLocation(13, [48.11, -1.67], ['temps', 'points']);
-var map = L.map('mapid', {
-  center: init.center,
-  zoom: init.zoom,
+var map = L.map('map', {
   minZoom: levels.reduce(function(a,b) { return Math.min(a, b); }),
 });
 
@@ -17,7 +14,7 @@ L.control.scale({
 
 var zoomData = [];
 
-var pointsGroup = L.layerGroup();
+var pointsGroup = L.featureGroup();
 
 for(let i in points) {
   var p = L.marker(
@@ -33,6 +30,9 @@ for(let i in points) {
     }
   );
 
+  // Initially add all of them to get default zoom and center
+  pointsGroup.addLayer(p);
+
   zoomData.push({
     'layer': p,
     'group': pointsGroup,
@@ -40,7 +40,16 @@ for(let i in points) {
   });
 }
 
-var linesGroup = L.layerGroup();
+// Init map zoom and center
+var init = L.Permalink.getMapLocation(['temps', 'points']);
+if(init.hasOwnProperty('zoom') && init.hasOwnProperty('center')) {
+  map.setView(init.center, init.zoom);
+}
+else {
+  map.fitBounds(L.latLngBounds(pointsGroup.getBounds()));
+}
+
+var linesGroup = L.featureGroup();
 
 for(let i in lines) {
   var color = '#ff4b4b';
@@ -108,3 +117,21 @@ L.control.layers({
   'points': pointsGroup,
   'temps': linesGroup,
 }).addTo(map);
+
+function showExplanation() {
+  MicroModal.show('modal-1', {
+    awaitCloseAnimation: true,
+    disableFocus: true,
+    onClose: function(modal) {
+      // Set cookie
+      document.cookie = "explainv1=true;max-age=" + (3600 * 24 * 30)
+    },
+  });
+}
+
+document.getElementById('explanation-link').onclick = showExplanation;
+
+// Show explanation modal once, if cookie is not set
+if(document.cookie.replace(/(?:(?:^|.*;\s*)explainv1\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {
+  showExplanation();
+}

@@ -1,10 +1,9 @@
 L.Permalink = {
-    //gets the map center, zoom-level and enabled layers from the URL if present, else uses default values
-    getMapLocation: function (zoom, center, layers) {
+    //gets the map center, zoom-level and enabled layers from the URL if present
+    getMapLocation: function (layers) {
         'use strict';
-        zoom = (zoom || zoom === 0) ? zoom : 18;
-        center = (center) ? center : [52.26869, -113.81034];
-        layers = (layers) ? layers : [];
+        var zoom, center;
+        var layers = (layers) ? layers : [];
 
         if (window.location.hash !== '') {
             var hash = window.location.hash.replace('#', '');
@@ -19,8 +18,9 @@ L.Permalink = {
                   layers = parts.slice(3);
                 }
             }
+          return {zoom: zoom, center: center, layers: new Set(layers)};
         }
-        return {zoom: zoom, center: center, layers: new Set(layers)};
+        return {layers: new Set(layers)};
     },
 
     setup: function (map, layers, updateLayers) {

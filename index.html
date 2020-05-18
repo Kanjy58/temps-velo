@@ -9,6 +9,7 @@
   <script src="static/leaflet/leaflet.js" integrity="sha512-HASH"></script>
   <script src="static/leaflet/leaflet.permalink.min.js" integrity="sha512-HASH"></script>
   <script src="static/leaflet/leaflet.textpath.min.js" integrity="sha512-HASH"></script>
+  <script src="static/micromodal.min.js" integrity="sha512-HASH"></script>
   <script src="static/data.min.js" integrity="sha512-HASH"></script>
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@taflevelo">
@@ -18,7 +19,38 @@
   <meta name="twitter:image" content="https://temps.taflevelo.fr/static/twitter.png">
 </head>
 <body>
-<div id="mapid"></div>
+<div id="map"></div>
+<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+      <header class="modal__header">
+        <h2 class="modal__title" id="modal-1-title">
+          Temps de trajet à vélo
+        </h2>
+        <h3 class="modal__subtitle">
+          Rennes et alentours
+        </h3>
+        <button class="modal__close" aria-label="Close modal" data-micromodal-close autofocus></button>
+      </header>
+      <main class="modal__content" id="modal-1-content">
+        <p>
+          Cette carte représente une vue schématique des temps de trajets à vélo.
+          Les parcours sont représentés par des lignes droites, mais les temps correspondent à des itinéraires réels.
+          Bien sûr, chaque cycliste est différent et ces temps ne sont qu'une indication.
+        </p>
+        <p>
+          <a href="https://gitlab.com/taflevelo/temps-velo/">Le code source est libre</a>. N'hésitez pas à contribuer ou à créer une carte similaire pour votre zone géographique&nbsp;!
+        </p>
+        <p>
+          Un cookie&nbsp;🍪 ne contenant aucune donnée personnelle va être déposé dans votre navigateur pour que vous ne voyez plus ce message.
+        </p>
+      </main>
+      <footer class="modal__footer">
+        <button class="modal__btn modal__btn-primary" data-micromodal-close aria-label="Close this dialog window">Fermer</button>
+      </footer>
+    </div>
+  </div>
+</div>
 <script src="static/main.min.js" integrity="sha512-HASH"></script>
 </body>
 </html>
