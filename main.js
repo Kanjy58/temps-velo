@@ -1,10 +1,10 @@
 'use strict';
 
 var attr =
-  ' | By <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
-  ' | <a href="https://gitlab.com/taflevelo/temps-velo/">source code</a>';
+  ' | Par <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
+  ' | <a href="javascript:void(0)" id="explanation-link">Explications</a>';
 
-var map = L.map('mapid', {
+var map = L.map('map', {
   minZoom: levels.reduce(function(a,b) { return Math.min(a, b); }),
 });
 
@@ -117,3 +117,21 @@ L.control.layers({
   'points': pointsGroup,
   'temps': linesGroup,
 }).addTo(map);
+
+function showExplanation() {
+  MicroModal.show('modal-1', {
+    awaitCloseAnimation: true,
+    disableFocus: true,
+    onClose: function(modal) {
+      // Set cookie
+      document.cookie = "explainv1=true;max-age=" + (3600 * 24 * 30)
+    },
+  });
+}
+
+document.getElementById('explanation-link').onclick = showExplanation;
+
+// Show explanation modal once, if cookie is not set
+if(document.cookie.replace(/(?:(?:^|.*;\s*)explainv1\s*\=\s*([^;]*).*$)|^.*$/, "$1") !== "true") {
+  showExplanation();
+}

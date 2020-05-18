@@ -45,7 +45,7 @@ Change / Update
     3. copy the `public/` directory on a web server
 
 For other regions:
-1. edit title and Twitter metadata in index.html
+1. edit title, modal text and Twitter metadata in index.html
 2. optionally edit/append attribution (first lines of `main.js`)
 
 
@@ -89,6 +89,7 @@ Many thanks to:
 - [Leaflet](https://leafletjs.com/): Display the map in your browser
 - [leaflet.Permalink](https://github.com/MarcChasse/leaflet.Permalink): Make URL shareable (slightly updated to get/put the current overlays in url)
 - [leaflet.TextPath](https://github.com/makinacorpus/Leaflet.TextPath): Display time on the edges
+- [Micromodal](https://github.com/Ghosh/micromodal): Display explanation modal
 - All dependencies of these projects, and all dependencies of these projects, and (Error: infinite recursion)
 - Others, see source code
 - Authors of all free software that I used (Error: list too long)
