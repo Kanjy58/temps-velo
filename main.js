@@ -1,7 +1,7 @@
 'use strict';
 
 var attr =
-  ' | Par <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
+  ' Par <a href="https://twitter.com/taflevelo">@taflevelo</a>' +
   ' | <a href="javascript:void(0)" id="explanation-link">Explications</a>';
 
 var map = L.map('map', {
@@ -104,11 +104,11 @@ L.Permalink.setup(map, init.layers, updateLayers);
 L.control.layers({
   'OSM': L.tileLayer('https://tile-{s}.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     maxZoom: 20,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' + attr
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | ' + attr
   }).addTo(map),
   'cyclOSM': L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
     maxZoom: 20,
-    attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' + attr
+    attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | ' + attr
   }),
   'vide': L.tileLayer('', {
     attribution: attr
