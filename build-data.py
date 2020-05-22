@@ -118,6 +118,11 @@ for level in levels:
     print('level <= {}'.format(level), file=sys.stderr)
     # compute Delaunay triangulation
     pointsLevel = points[points['level'] <= level];
+
+    if pointsLevel.shape[0] < 3:
+        print('WARNING: not enough points to triangulate at level <= {}: skipping'.format(level))
+        continue
+
     triangles = Delaunay(pointsLevel[['lat', 'lng']]).simplices
 
     # get all unique edges
