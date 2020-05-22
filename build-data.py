@@ -50,6 +50,10 @@ def getLatLng(s):
         sleep(60 / nominatim_rate_limit)
         nominatim_mutex.release()
 
+        if len(json) == 0:
+            print('ERROR: nominatim request finds no results for {} (query: <{}>)'.format(s['name'], s['query']))
+            sys.exit(1)
+
         coords = float(json[0]['lat']), float(json[0]['lon'])
 
         cache['nominatim'][s['query']] = coords
