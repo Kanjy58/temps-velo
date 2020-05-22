@@ -104,6 +104,10 @@ points = pd.read_csv('points.csv', delimiter=';')
 # do requests to Nominatim to get points' coordinates where needed
 points = points.apply(getLatLng, axis=1, result_type='expand')
 
+if not 'OPENROUTESERVICEKEY' in os.environ:
+    print('ERROR: set OPENROUTESERVICEKEY environment variable. Get an API key from https://openrouteservice.org/dev/')
+    sys.exit(1)
+
 client = openrouteservice.Client(key=os.environ['OPENROUTESERVICEKEY'])
 lines = []
 
