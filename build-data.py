@@ -50,6 +50,10 @@ def getLatLng(s):
         sleep(60 / nominatim_rate_limit)
         nominatim_mutex.release()
 
+        if len(json) == 0:
+            print('ERROR: nominatim request finds no results for {} (query: <{}>)'.format(s['name'], s['query']))
+            sys.exit(1)
+
         coords = float(json[0]['lat']), float(json[0]['lon'])
 
         cache['nominatim'][s['query']] = coords
@@ -100,6 +104,10 @@ points = pd.read_csv('points.csv', delimiter=';')
 # do requests to Nominatim to get points' coordinates where needed
 points = points.apply(getLatLng, axis=1, result_type='expand')
 
+if not 'OPENROUTESERVICEKEY' in os.environ:
+    print('ERROR: set OPENROUTESERVICEKEY environment variable. Get an API key from https://openrouteservice.org/dev/')
+    sys.exit(1)
+
 client = openrouteservice.Client(key=os.environ['OPENROUTESERVICEKEY'])
 lines = []
 
@@ -110,6 +118,11 @@ for level in levels:
     print('level <= {}'.format(level), file=sys.stderr)
     # compute Delaunay triangulation
     pointsLevel = points[points['level'] <= level];
+
+    if pointsLevel.shape[0] < 3:
+        print('WARNING: not enough points to triangulate at level <= {}: skipping'.format(level))
+        continue
+
     triangles = Delaunay(pointsLevel[['lat', 'lng']]).simplices
 
     # get all unique edges
