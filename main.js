@@ -53,12 +53,21 @@ var linesGroup = L.featureGroup();
 
 for(let i in lines) {
   var color = '#ff4b4b';
-  if(lines[i].minutes <= 20) color = '#ffa24b';
-  if(lines[i].minutes <= 10) color = '#4b4bff';
+  var weight = 2;
+  if(lines[i].minutes <= 20) {
+    color = '#ffa24b';
+    weight = 4;
+  }
+  if(lines[i].minutes <= 10) {
+    color = '#4b4bff';
+    weight = 6;
+  }
   var l = L.polyline([lines[i].west, lines[i].east], {
-    color: color
+    color: color,
+    weight: weight
   }).setText(lines[i].minutes + " min", {
     center: true,
+    offset: 5,
     attributes: {class: "ll-line-label"}
   });
 
