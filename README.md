@@ -2,7 +2,7 @@ Temps Vélo - a bike travel time map
 ===================================
 
 This is a map showing a mesh of bike travel segments over a set of points.
-It does not give routes, but give an overview of how many time is needed to bike somewhere / how far we can reach biking.
+It does not give routes, but give an overview of how much time is needed to bike somewhere / how far we can reach biking.
 
 Made by [@taflevelo](https://twitter.com/taflevelo).
 
